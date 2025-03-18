@@ -1,62 +1,66 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
 import './App.css'
 
-// Import new components (we'll create these next)
-import Navbar from './components/Navbar'
-import Home from './components/Home'
-import MembershipPlans from './components/MembershipPlans'
-import Customize from './components/Customize'
+// Import components
 import MatchHistory from './components/MatchHistory'
 import Forum from './components/Forum'
-import Shop from './components/Shop'
-import Gallery from './components/Gallery'
-import Profile from './components/Profile'
+import Navbar from './components/Navbar'
 
 function App() {
-  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
+  const [membershipType, setMembershipType] = useState('basic')
+  const [customizations, setCustomizations] = useState({
+    theme: 'american-nightmare',
+    notifications: true,
+    favoriteMatches: []
+  })
 
   return (
     <Router>
       <div className="app">
-        <Navbar 
-          isAuthenticated={isAuthenticated} 
-          login={loginWithRedirect} 
-          logout={logout} 
-          user={user}
-        />
-
+        <Navbar />
+        
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route 
-            path="/membership" 
-            element={
-              isAuthenticated ? 
-              <MembershipPlans /> : 
-              <div>Please login to view membership options</div>
-            } 
-          />
-          <Route 
-            path="/customize" 
-            element={
-              isAuthenticated ? 
-              <Customize /> : 
-              <div>Please login to customize your experience</div>
-            } 
-          />
+          <Route path="/" element={
+            <>
+              <header className="hero-section">
+                <h1>The American Nightmare - Cody Rhodes</h1>
+                <p>Welcome to the official fan club</p>
+              </header>
+
+              <main>
+                <section className="membership-section">
+                  <h2>Choose Your Membership</h2>
+                  <div className="membership-options">
+                    <div className="membership-card">
+                      <h3>Basic Membership</h3>
+                      <p>$9.99/month</p>
+                      <ul>
+                        <li>Access to exclusive content</li>
+                        <li>Monthly newsletter</li>
+                        <li>Fan community access</li>
+                      </ul>
+                      <button onClick={() => setMembershipType('basic')}>Select Basic</button>
+                    </div>
+
+                    <div className="membership-card">
+                      <h3>Premium Membership</h3>
+                      <p>$19.99/month</p>
+                      <ul>
+                        <li>All Basic features</li>
+                        <li>Virtual meet & greets</li>
+                        <li>Exclusive merchandise</li>
+                        <li>Priority event access</li>
+                      </ul>
+                      <button onClick={() => setMembershipType('premium')}>Select Premium</button>
+                    </div>
+                  </div>
+                </section>
+              </main>
+            </>
+          } />
           <Route path="/matches" element={<MatchHistory />} />
           <Route path="/forum" element={<Forum />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route 
-            path="/profile" 
-            element={
-              isAuthenticated ? 
-              <Profile user={user} /> : 
-              <div>Please login to view your profile</div>
-            } 
-          />
         </Routes>
 
         <footer>
