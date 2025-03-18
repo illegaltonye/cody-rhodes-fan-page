@@ -1,13 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cody Rhodes - The American Nightmare</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">CODY RHODES</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/matches.html">Matches</a>
+                <a href="/membership.html">Join Club</a>
+                <a href="/gallery.html">Gallery</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <h1>The American Nightmare</h1>
+                <p>Follow the journey of professional wrestling's most electrifying superstar</p>
+            </div>
+            <div class="slide-controls"></div>
+        </section>
+
+        <section class="news">
+            <h2>Latest Updates</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <h3>WrestleMania 40 Main Event</h3>
+                    <p>Cody Rhodes finishes his story at the grandest stage of them all!</p>
+                    <small>April 7, 2024</small>
+                    <button class="share-btn">Share This News</button>
+                </div>
+                <div class="news-card">
+                    <h3>Royal Rumble Victory</h3>
+                    <p>The American Nightmare wins back-to-back Royal Rumbles!</p>
+                    <small>January 27, 2024</small>
+                    <button class="share-btn">Share This News</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="loading-overlay" id="loading">Loading...</div>
+
+    <script src="script.js"></script>
+</body>
 </html>
